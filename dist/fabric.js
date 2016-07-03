@@ -3542,7 +3542,8 @@ if (typeof console !== 'undefined') {
 
     function hasAncestorWithNodeName(element, nodeName) {
       while (element && (element = element.parentNode)) {
-        if (element.nodeName && nodeName.test(element.nodeName.replace('svg:', '')) && !element.getAttribute('instantiated_by_use')) {
+        if (element.nodeName && nodeName.test(element.nodeName.replace('svg:', ''))
+          && !element.getAttribute('instantiated_by_use')) {
           return true;
         }
       }
@@ -5491,6 +5492,12 @@ fabric.ElementsParser.prototype.checkIfDone = function() {
   function _convertPercentUnitsToValues(object, options, gradientUnits) {
     var propValue, addFactor = 0, multFactor = 1, ellipseMatrix = '';
     for (var prop in options) {
+      if (options[prop] === '-Infinity') {
+        options[prop] = 0;
+      }
+      else if (options[prop] === 'Infinity') {
+        options[prop] = 1;
+      }
       propValue = parseFloat(options[prop], 10);
       if (typeof options[prop] === 'string' && /^\d+%$/.test(options[prop])) {
         multFactor = 0.01;
