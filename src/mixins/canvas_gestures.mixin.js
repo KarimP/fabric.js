@@ -121,7 +121,7 @@
      * @param {Number} s The scale factor to apply to the current scale level
      * @param {Event} e Event object by Event.js
      */
-    _scaleObjectBy: function(s, e) {
+    _scaleObjectBy: function(s, e, by = null) {
       var t = this._currentTransform,
           target = t.target,
           lockScalingX = target.get('lockScalingX'),
@@ -137,7 +137,7 @@
           dim = target._getTransformedDimensions();
 
       this._setObjectScale(new fabric.Point(t.scaleX * dim.x * s / target.scaleX, t.scaleY * dim.y * s / target.scaleY),
-        t, lockScalingX, lockScalingY, null, target.get('lockScalingFlip'), dim);
+        t, lockScalingX, lockScalingY, by, target.get('lockScalingFlip'), dim);
 
       target.setPositionByOrigin(constraintPosition, t.originX, t.originY);
 
