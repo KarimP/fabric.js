@@ -121,7 +121,7 @@
      * @param {Number} s The scale factor to apply to the current scale level
      * @param {Event} e Event object by Event.js
      */
-    _scaleObjectBy: function(s, e, by = null) {
+    _scaleObjectBy: function(s, e, by) {
       var t = this._currentTransform,
           target = t.target,
           lockScalingX = target.get('lockScalingX'),
